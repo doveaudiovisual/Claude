@@ -15,7 +15,7 @@ export function useWebcams(bounds) {
       const { _southWest: sw, _northEast: ne } = bounds;
       const params = new URLSearchParams({
         lang: 'en',
-        show: 'webcams:location,player,image',
+        include: 'location,player,images,categories',
         limit: '50',
         offset: '0',
         boundingBox: `${sw.lat},${sw.lng},${ne.lat},${ne.lng}`,
@@ -24,7 +24,7 @@ export function useWebcams(bounds) {
       const res = await fetch(`${WINDY_WEBCAMS_URL}?${params}`);
       if (!res.ok) throw new Error(`Webcam API ${res.status}`);
       const data = await res.json();
-      const list = data.result?.webcams ?? [];
+      const list = data.webcams ?? [];
       setWebcams(list);
       setCount('webcams', list.length);
     } catch (err) {

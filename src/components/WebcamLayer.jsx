@@ -28,7 +28,7 @@ function WebcamMarkersInner({ bounds }) {
         if (!lat || !lng) return null;
         return (
           <Marker
-            key={cam.id}
+            key={cam.webcamId}
             position={[lat, lng]}
             icon={webcamIcon}
             eventHandlers={{
